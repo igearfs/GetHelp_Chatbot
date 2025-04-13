@@ -14,8 +14,8 @@ build a chatbot to answer questions based on their content. You can drop in any 
 and it will retrieve relevant answers from them. But feel free to experiment with any other helpful documents
 to expand and test the chatbot's capabilities!
 
-# Please check with your local government for updated documents. The Williamson county document and the Unemployment document I added for examples may be out of date.
-
+Please check with your local government for updated documents.
+The Williamson county document and the Unemployment document I added for examples may be out of date.
 
 # Donate
 
