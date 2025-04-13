@@ -1,0 +1,16 @@
+langchain
+langchain-community
+langchain-chroma
+langchain-ollama
+python-dotenv
+pypdf
+python-docx
+uvicorn
+psycopg2-binary
+sqlalchemy
+pandas
+streamlit
+chromadb
+psycopg2
+unstructured
+logging
