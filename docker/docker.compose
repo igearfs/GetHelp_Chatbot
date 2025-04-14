@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"  # Host:Container
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - .:/project  # Mount your local directory to the container (optional but useful for dev)
+    restart: always  # Ensure container restarts automatically in case of failure

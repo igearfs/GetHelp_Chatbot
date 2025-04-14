@@ -11,6 +11,5 @@ sqlalchemy
 pandas
 streamlit
 chromadb
-psycopg2
+#psycopg2 <-- windows wanted this installed
 unstructured
-logging
