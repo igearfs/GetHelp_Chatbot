@@ -39,5 +39,4 @@ echo "Starting Streamlit app..."
 exec streamlit run app.py \
     --server.enableCORS=false \
     --server.headless=true \
-    --server.port=8501 \
-    --server.address=0.0.0.0
+    --server.port=8501

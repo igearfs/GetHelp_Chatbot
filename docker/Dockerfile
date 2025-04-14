@@ -33,6 +33,7 @@ RUN apt-get update && \
 COPY app.py .
 COPY llm_indexer.py .
 COPY llm_loader.py .
+COPY LocalRetrievalQA.py .
 COPY requirements.txt .
 COPY data ./data
 COPY docs ./docs
