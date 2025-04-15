@@ -22,6 +22,9 @@ if [ ! -d "$CHROMA_DB_DIR" ]; then
         exit 1
     fi
 
+    echo "Launching mistral:7b in background..."
+    screen -dmS mistral_7b_session ollama run mistral
+
     echo "Running indexer..."
     if python llm_indexer.py; then
         echo "Indexing complete."
@@ -31,6 +34,8 @@ if [ ! -d "$CHROMA_DB_DIR" ]; then
     fi
 else
     echo "Startup: chroma_db found. Skipping model pull and indexing..."
+    echo "Launching mistral:7b in background..."
+    screen -dmS mistral_7b_session ollama run mistral
 fi
 
 # Start Streamlit
