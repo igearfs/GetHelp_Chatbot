@@ -11,7 +11,7 @@ until curl -s http://localhost:11434 > /dev/null; do
 done
 
 # Only pull model + run indexer the first time (based on chroma_db existence)
-CHROMA_DB_DIR="/app/chroma_db"  # Update path if needed
+CHROMA_DB_DIR="/project/data/chroma_db"  # Update path if needed
 
 if [ ! -d "$CHROMA_DB_DIR" ]; then
     echo "First-time setup: chroma_db not found."
@@ -22,9 +22,6 @@ if [ ! -d "$CHROMA_DB_DIR" ]; then
         exit 1
     fi
 
-    echo "Launching mistral:7b in background..."
-    screen -dmS mistral_7b_session ollama run mistral
-
     echo "Running indexer..."
     if python llm_indexer.py; then
         echo "Indexing complete."
@@ -32,10 +29,32 @@ if [ ! -d "$CHROMA_DB_DIR" ]; then
         echo "Indexer failed. Exiting."
         exit 1
     fi
+    touch /root/indexer_done.txt
+
 else
-    echo "Startup: chroma_db found. Skipping model pull and indexing..."
-    echo "Launching mistral:7b in background..."
-    screen -dmS mistral_7b_session ollama run mistral
+    # Only pull model + run indexer the first time
+    if [ ! -f /root/indexer_done.txt ]; then
+        echo "First-time setup: Pulling mistral:7b..."
+        if ! ollama pull mistral:7b; then
+            echo "Model pull failed. Exiting."
+            exit 1
+        fi
+
+        echo "Launching mistral:7b in background..."
+        screen -dmS mistral_7b_session ollama run mistral
+
+        echo "Running indexer..."
+        if python llm_indexer.py; then
+            touch /root/indexer_done.txt
+        else
+            echo "Indexer failed. Exiting."
+            exit 1
+        fi
+    else
+        echo "Startup: Model already pulled and indexer completed. Skipping setup..."
+        echo "Launching mistral:7b in background..."
+        screen -dmS mistral_7b_session ollama run mistral
+    fi
 fi
 
 # Start Streamlit
