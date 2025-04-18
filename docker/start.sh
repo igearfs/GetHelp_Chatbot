@@ -30,7 +30,7 @@ if [ ! -d "$CHROMA_DB_DIR" ]; then
         exit 1
     fi
     touch /root/indexer_done.txt
-
+    screen -dmS mistral_7b_session ollama run mistral
 else
     # Only pull model + run indexer the first time
     if [ ! -f /root/indexer_done.txt ]; then
@@ -42,14 +42,8 @@ else
 
         echo "Launching mistral:7b in background..."
         screen -dmS mistral_7b_session ollama run mistral
+        touch /root/indexer_done.txt
 
-        echo "Running indexer..."
-        if python llm_indexer.py; then
-            touch /root/indexer_done.txt
-        else
-            echo "Indexer failed. Exiting."
-            exit 1
-        fi
     else
         echo "Startup: Model already pulled and indexer completed. Skipping setup..."
         echo "Launching mistral:7b in background..."

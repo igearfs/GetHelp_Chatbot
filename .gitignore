@@ -3,10 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# App data (Chroma DB, etc.)
-data/
-
-
 # Virtual environments
 venv/
 .env/
@@ -54,3 +50,5 @@ dmypy.json
 # Other
 .DS_Store
 Thumbs.db
+/docs/Emory_transribe.docx
+/data/chroma_db/
