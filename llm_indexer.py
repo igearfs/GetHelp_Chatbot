@@ -8,7 +8,7 @@ import logging  # <-- Make sure logging is imported
 from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain.schema import Document  # <-- Needed for wrapping chunks
+from langchain_core.documents import Document  # <-- Needed for wrapping chunks
 from llm_loader import load_all_documents  # This should be your own loader
 
 # Setup logging
