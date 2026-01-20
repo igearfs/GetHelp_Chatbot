@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     OLLAMA_MODELS=/root/.ollama/models
-
+    ANONYMIZED_TELEMETRY=False
 WORKDIR /project
 
 # Install system dependencies

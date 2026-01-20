@@ -4,6 +4,7 @@ import logging
 from langchain_ollama import OllamaEmbeddings, OllamaLLM
 from langchain_chroma import Chroma
 from langchain.chains import RetrievalQA
+from chromadb.config import Settings
 from langchain.prompts import PromptTemplate
 
 class LocalRetrievalQA:
@@ -60,6 +61,10 @@ class LocalRetrievalQA:
 if __name__ == "__main__":
     qa = LocalRetrievalQA()
 
+
+    client = chromadb.Client(Settings(anonymized_telemetry=False))
+    # or if using PersistentClient
+    client = chromadb.PersistentClient(path=".", settings=Settings(anonymized_telemetry=False))
     print("📚 Ask a question based only on your documents.")
     print("Type 'exit' to quit.\n")
 

@@ -13,6 +13,10 @@ def get_qa():
 qa = get_qa()
 
 # App layout
+from chromadb.config import Settings
+client = chromadb.Client(Settings(anonymized_telemetry=False))
+# or if using PersistentClient
+client = chromadb.PersistentClient(path=".", settings=Settings(anonymized_telemetry=False))
 
 st.title("📚 Ask Questions About Your Documents")
 st.markdown("Powered by Ollama + LangChain + Streamlit")
