@@ -1,3 +1,4 @@
+
 #  Copyright (c) 2025. In-Game Event, A Red Flag Syndicate LLC.
 
 import os
@@ -15,6 +16,7 @@ DOCS_DIR = "./docs"
 SQL_DIR = "./sql"
 
 logging.basicConfig(level=logging.INFO)
+
 
 def load_documents_from_directory(directory: str) -> List[Document]:
     docs = []
@@ -38,6 +40,7 @@ def load_documents_from_directory(directory: str) -> List[Document]:
         except Exception as e:
             logging.error(f"Error loading {filename}: {e}")
     return docs
+
 
 def load_documents_from_sql_dir(sql_dir: str) -> List[Document]:
     sql_docs = []
@@ -65,6 +68,7 @@ def load_documents_from_sql_dir(sql_dir: str) -> List[Document]:
         except Exception as e:
             logging.error(f"SQL error in {filename}: {e}")
     return sql_docs
+
 
 def load_all_documents() -> List[Document]:
     file_docs = load_documents_from_directory(DOCS_DIR)

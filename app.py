@@ -1,5 +1,6 @@
 #  Copyright (c) 2025. In-Game Event, A Red Flag Syndicate LLC.
-
+import chromadb
+from chromadb.config import Settings
 import streamlit as st
 from LocalRetrievalQA import LocalRetrievalQA
 
@@ -13,7 +14,7 @@ def get_qa():
 qa = get_qa()
 
 # App layout
-from chromadb.config import Settings
+
 client = chromadb.Client(Settings(anonymized_telemetry=False))
 # or if using PersistentClient
 client = chromadb.PersistentClient(path=".", settings=Settings(anonymized_telemetry=False))
