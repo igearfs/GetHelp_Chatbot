@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 
 
 class LocalRetrievalQA:
-    def __init__(self, model_name="mistral", persist_directory=CHROMA_DIR):
+    def __init__(self, model_name="llama3.1:8b-instruct-q8_0", persist_directory=CHROMA_DIR):
         logging.info("🔍 Initializing retriever and LLM...")
 
         embeddings = OllamaEmbeddings(model="nomic-embed-text")
@@ -26,7 +26,8 @@ class LocalRetrievalQA:
 
         prompt_template = """
 You are a helpful assistant that ONLY uses the provided context to answer questions.
-If the context does not contain the answer, just say "I don't know based on the documents."
+If the context does not contain the answer, just say "I don't know based on the documents. The documents loaded are about Williamson County services
+and Unemployment Services."
 
 CONTEXT:
 {context}
